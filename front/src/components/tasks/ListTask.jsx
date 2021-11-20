@@ -17,10 +17,16 @@ const ListTask = () => {
                 <li className="tarea">No hay tareas</li>
             ) : (
                 tasks.map((task, index) => (
-                    <Task/>
+                    <Task {...task} key={index}/>
                 ))
             )}
         </ul>
+        <button
+            type='button'
+            className='btn btn-eliminar'
+        >
+            Eliminar Proyecto &time;
+        </button>
     </>
   )
 }

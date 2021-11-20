@@ -1,11 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import ProjectContext from '../../context/projects/ProjectContext'
 
 const NewProject = () => {
+
+    ///state global
+    const { form, showForm } = useContext(ProjectContext)
+    
+
+    ///state local
     const [ project, setProject ] = useState({
         name:''
     })
 
     const {name} = project
+
     const handlerChange = e =>{
         setProject({
             ...project,
@@ -21,16 +29,23 @@ const NewProject = () => {
 
         ////reiniciar Form
     }
+
+    //motrar el formulario
+    const handlerShowform = () => {
+        showForm()
+    }
  
    return (
     <>
         <button
         type='button'
         className='btn btn-block btn-primario'
+        onClick={handlerShowform}
         >
             Nuevo Proyecto
         </button>
-        <form className='formulario-nuevo-proyecto' onSubmit={handlerSubmitProjec} > 
+        {form && (
+            <form className='formulario-nuevo-proyecto' onSubmit={handlerSubmitProjec} > 
             <input
                 type="text"
                 className='input-text'
@@ -45,6 +60,7 @@ const NewProject = () => {
                 value='Agregar Proyecto'
             />
         </form>
+        )}
     </>
   )
 }
