@@ -9,8 +9,8 @@ const ListProjects = () => {
     ]
   return (
     <ul className='listado-proyectos'>
-        {projects?.map(project =>(
-            <Project project={project} />
+        {projects?.map((project, index) =>(
+            <Project project={project} key={index} />
         ))}
     </ul>
   )

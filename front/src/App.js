@@ -8,11 +8,12 @@ import {
 import Login from './components/auth/Login';
 import NewAcount from './components/auth/NewAcount';
 import Projects from './components/projects/Projects';
+import ProjectState from './context/projects/ProjectState';
 
 const App = () => {
 
   return (
-    <div>
+    <ProjectState>
       <Router>
         <Routes>
           <Route exact path='/' element={<Login/>} />
@@ -20,7 +21,7 @@ const App = () => {
           <Route exact path='/proyectos' element={<Projects/>} />
         </Routes>
       </Router>
-    </div>
+    </ProjectState>
   )
 }
 
