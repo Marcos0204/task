@@ -1,10 +1,25 @@
 
-import React from 'react'
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Login from './components/auth/Login';
+import NewAcount from './components/auth/NewAcount';
+import Projects from './components/projects/Projects';
 
 const App = () => {
+
   return (
     <div>
-      <h1>app!</h1>
+      <Router>
+        <Routes>
+          <Route exact path='/' element={<Login/>} />
+          <Route exact path='/nueva-cuenta:id' element={<NewAcount/>} />
+          <Route exact path='/proyectos' element={<Projects/>} />
+        </Routes>
+      </Router>
     </div>
   )
 }
