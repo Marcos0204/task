@@ -16,7 +16,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route exact path='/' element={<Login/>} />
-          <Route exact path='/nueva-cuenta:id' element={<NewAcount/>} />
+          <Route exact path='/nueva-cuenta' element={<NewAcount/>} />
           <Route exact path='/proyectos' element={<Projects/>} />
         </Routes>
       </Router>
