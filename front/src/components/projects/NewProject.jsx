@@ -4,7 +4,7 @@ import ProjectContext from '../../context/projects/ProjectContext'
 const NewProject = () => {
 
     ///state global
-    const { form, showForm } = useContext(ProjectContext)
+    const { form, showForm, addProject } = useContext(ProjectContext)
     
 
     ///state local
@@ -24,10 +24,13 @@ const NewProject = () => {
     const handlerSubmitProjec = e =>{
         e.preventDefault();
         ///validar el proyecto
-
+        if(!name) return;
         ///agregar al estate 
-
+        addProject(project)
         ////reiniciar Form
+        setProject({
+            name:''
+        })
     }
 
     //motrar el formulario

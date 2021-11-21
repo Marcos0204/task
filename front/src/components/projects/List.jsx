@@ -6,6 +6,7 @@ const ListProjects = () => {
   const { projects, getProjects} = useContext(ProjectContext)
   useEffect(()=>{
     getProjects()
+     // eslint-disable-next-line
   }, [])
 
   if(projects.length === 0 ) return null
