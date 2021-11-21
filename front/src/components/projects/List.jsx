@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useContext, useEffect} from 'react'
 import Project from './Project'
+import ProjectContext from '../../context/projects/ProjectContext'
 
 const ListProjects = () => {
-    const projects= [
-        {name: 'tienda virtual'},
-        {name: 'front end'},
-        {name: 'back end'}
-    ]
+  const { projects, getProjects} = useContext(ProjectContext)
+  useEffect(()=>{
+    getProjects()
+  }, [])
+
+  if(projects.length === 0 ) return null
+  //if(!projects) return null
   return (
     <ul className='listado-proyectos'>
-        {projects?.map((project, index) =>(
+        {projects.map((project, index) =>(
             <Project project={project} key={index} />
         ))}
     </ul>
