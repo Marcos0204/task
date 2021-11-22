@@ -4,7 +4,9 @@ import ProjectContext from './ProjectContext'
 import {ProjectReducers} from './ProjectReducers'
 import { FORM_PROJECT,
         GET_PROJECTS,
-        ADD_PROJECT
+        ADD_PROJECT,
+        VALIDATE_FORM,
+        ACTUAL_PROYECT
     } from '../../types'
 
 
@@ -17,7 +19,10 @@ const ProjectState = ({children}) => {
     ]
     const initialState = {
         projects: [],
-        form: false
+        form: false,
+        errorForm:  false,
+        project: null,
+
     }
     const [ state, dispatch ] =useReducer(ProjectReducers, initialState);
 
@@ -43,14 +48,29 @@ const ProjectState = ({children}) => {
             payload: item
         })
     }
+    const showError = () =>{
+        dispatch({
+            type:VALIDATE_FORM
+        })
+    }
+    const projectAtual = itemID => {
+        dispatch({
+            type:ACTUAL_PROYECT,
+            payload: itemID
+        })
+    }
     return (
         <ProjectContext.Provider
             value={{
                 projects: state.projects,
                 form: state.form,
-                showForm: showForm,
-                getProjects: getProjects,
-                addProject: addProject
+                errorForm: state.errorForm,
+                project:state.project,
+                showForm,
+                getProjects,
+                addProject,
+                showError,
+                projectAtual
             }}
         >
             {children}

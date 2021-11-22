@@ -4,7 +4,7 @@ import ProjectContext from '../../context/projects/ProjectContext'
 const NewProject = () => {
 
     ///state global
-    const { form, showForm, addProject } = useContext(ProjectContext)
+    const { form, errorForm, showForm, addProject, showError} = useContext(ProjectContext)
     
 
     ///state local
@@ -24,7 +24,10 @@ const NewProject = () => {
     const handlerSubmitProjec = e =>{
         e.preventDefault();
         ///validar el proyecto
-        if(!name) return;
+        if(!name) {
+            showError()
+            return;
+        };
         ///agregar al estate 
         addProject(project)
         ////reiniciar Form
@@ -64,6 +67,9 @@ const NewProject = () => {
             />
         </form>
         )}
+        {errorForm && (
+            <p className='mensaje error'>El nombre es obligatorio</p>
+        ) }
     </>
   )
 }
