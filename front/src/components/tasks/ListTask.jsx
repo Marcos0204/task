@@ -1,8 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Task from './Task'
+import ProjectContext from '../../context/projects/ProjectContext'
 
 
 const ListTask = () => {
+    const { project } = useContext(ProjectContext)
+    
+    if(!project) return <h2>Selecciona un proyecto</h2>
+    
+    const [projectAtual] = project
     const tasks = [
         {name:'Elegir Plataforma', state:true},
         {name:'Elegir lenguaje', state:true},
@@ -11,7 +17,7 @@ const ListTask = () => {
     ]
   return (
     <>
-        <h2> Proyecto: Tienda Virtaul</h2> 
+       <h2> Proyecto: {projectAtual.name}</h2>
         <ul className="listado-tareas">
             {tasks.length === 0 ?(
                 <li className="tarea">No hay tareas</li>
