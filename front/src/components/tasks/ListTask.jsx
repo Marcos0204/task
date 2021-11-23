@@ -4,10 +4,10 @@ import ProjectContext from '../../context/projects/ProjectContext'
 
 
 const ListTask = () => {
-    const { project } = useContext(ProjectContext)
+    const { project, deleteProject } = useContext(ProjectContext)
     
     if(!project) return <h2>Selecciona un proyecto</h2>
-    
+
     const [projectAtual] = project
     const tasks = [
         {name:'Elegir Plataforma', state:true},
@@ -15,6 +15,9 @@ const ListTask = () => {
         {name:'Elegir back', state:true},
         {name:'Elegir front', state:true},
     ]
+    const onClickDetele = () =>{
+        deleteProject(projectAtual.id)
+    }
   return (
     <>
        <h2> Proyecto: {projectAtual.name}</h2>
@@ -29,6 +32,7 @@ const ListTask = () => {
         </ul>
         <button
             type='button'
+            onClick={onClickDetele}
             className='btn btn-eliminar'
         >
             Eliminar Proyecto &time;

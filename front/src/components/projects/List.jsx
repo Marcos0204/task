@@ -9,7 +9,7 @@ const ListProjects = () => {
      // eslint-disable-next-line
   }, [])
 
-  if(projects.length === 0 ) return null
+  if(projects.length === 0 ) return <p>Oop! aun no hay proyectos</p>
   //if(!projects) return null
   return (
     <ul className='listado-proyectos'>
