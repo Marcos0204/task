@@ -9,18 +9,21 @@ import Login from './components/auth/Login';
 import NewAcount from './components/auth/NewAcount';
 import Projects from './components/projects/Projects';
 import ProjectState from './context/projects/ProjectState';
+import TasktState from './context/tasks/TaskState';
 
 const App = () => {
 
   return (
     <ProjectState>
-      <Router>
-        <Routes>
-          <Route exact path='/' element={<Login/>} />
-          <Route exact path='/nueva-cuenta' element={<NewAcount/>} />
-          <Route exact path='/proyectos' element={<Projects/>} />
-        </Routes>
-      </Router>
+      <TasktState>
+        <Router>
+          <Routes>
+            <Route exact path='/' element={<Login/>} />
+            <Route exact path='/nueva-cuenta' element={<NewAcount/>} />
+            <Route exact path='/proyectos' element={<Projects/>} />
+          </Routes>
+        </Router>
+      </TasktState>
     </ProjectState>
   )
 }
