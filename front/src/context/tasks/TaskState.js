@@ -1,38 +1,55 @@
 import React, { useReducer } from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import TasksContextç from './TaskContext';
+import TaskContext from './TaskContext';
 import { TaskReducers } from './TaskReducers';
 
 
-// import { FORM_PROJECT,
-//         GET_PROJECTS,
-//         ADD_PROJECT,
-//         VALIDATE_FORM,
-//         ACTUAL_PROYECT,
-//         DELETE_PROJECT
-//     } from '../../types'
+import { TASKS_PROJECT,
+    } from '../../types'
 
 
 
 const TasktState = ({children}) => {
   
     const initialState = {
-        projects: [],
-        form: false,
-        errorForm:  false,
-        project: null,
-
+        task: [
+            {name:'Elegir Plataforma', state:true, projectID:1},
+            {name:'Elegir lenguaje', state:true, projectID:2},
+            {name:'Elegir back', state:true, projectID:3},
+            {name:'Elegir front', state:true, projectID:1},
+            {name:'Elegir Plataforma', state:true, projectID:1},
+            {name:'Elegir lenguaje', state:true, projectID:2},
+            {name:'Elegir back', state:true, projectID:3},
+            {name:'Elegir front', state:true, projectID:1},
+            {name:'Elegir Plataforma', state:true, projectID:1},
+            {name:'Elegir lenguaje', state:true, projectID:2},
+            {name:'Elegir back', state:true, projectID:3},
+            {name:'Elegir front', state:true, projectID:1},
+        ],
+        taskProject: null
     }
     const [ state, dispatch ] =useReducer(TaskReducers, initialState);
 
+    const getProjects = (ID) =>{
+        
+        dispatch({
+            type: TASKS_PROJECT,
+            payload: ID
+        })
+
+    }
+
     return (
-        <TasksContextç.Provider
+        <TaskContext.Provider
             value={{
-                name:'hola'
+                task: state.task,
+                taskProject: state.taskProject,
+                getProjects,
+
             }}
         >
             {children}
-        </TasksContextç.Provider>
+        </TaskContext.Provider>
         )
 }
 

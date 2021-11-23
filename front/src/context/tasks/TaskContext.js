@@ -1,7 +1,7 @@
 import {createContext} from 'react'
 
 
-const TasksContext = createContext();
+const TaskContext = createContext();
 
 
-export default TasksContext;
+export default TaskContext;
