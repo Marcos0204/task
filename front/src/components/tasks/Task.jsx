@@ -4,13 +4,23 @@ import ProjectContext from '../../context/projects/ProjectContext'
 
 const Task = ({...task}) => {
     const { project } = useContext(ProjectContext)
-    const { deleteTask, getTask } = useContext(TaskContext)
+    const { deleteTask, getTask, taskStatus } = useContext(TaskContext)
     const [projectActual] = project
 
     ///eliminar tarea
     const Taskdelete = id =>{
         deleteTask(id)
         getTask(projectActual.id)
+    }
+
+    ///funcion para cambiar el estado de la tarea
+    const statusChange = payload => {
+        if(payload.state) {
+            payload.state= false
+        } else {
+            payload.state= true
+        }
+        taskStatus(payload)
     }
   return (
     <li className="tarea sombra">
@@ -20,6 +30,7 @@ const Task = ({...task}) => {
                 <button
                     type='button'
                     className='completo'
+                    onClick={()=> statusChange(task)}
                     >
                     Completo
                 </button>
@@ -27,6 +38,7 @@ const Task = ({...task}) => {
                 <button
                     type='button'
                     className='incompleto'
+                    onClick={()=> statusChange(task)}
                     >
                     Incompleto
                 </button>

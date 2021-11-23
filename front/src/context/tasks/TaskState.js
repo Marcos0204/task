@@ -7,7 +7,8 @@ import { TaskReducers } from './TaskReducers';
 import { TASKS_PROJECT,
     ADD_TASK,
     VALIDATE_TASK,
-    DELETE_TASK
+    DELETE_TASK,
+    TASK_STATUS
     } from '../../types'
 
 
@@ -16,18 +17,12 @@ const TasktState = ({children}) => {
   
     const initialState = {
         task: [
-            {id:1,name:'Elegir Plataforma', state:true, projectID:1},
-            {id:2,name:'Elegir lenguaje', state:true, projectID:2},
-            {id:3,name:'Elegir back', state:true, projectID:3},
-            {id:4,name:'Elegir front', state:true, projectID:1},
-            {id:5,name:'Elegir Plataforma', state:true, projectID:1},
-            {id:6,name:'Elegir lenguaje', state:true, projectID:2},
-            {id:7,name:'Elegir back', state:true, projectID:3},
-            {id:8,name:'Elegir front', state:true, projectID:1},
-            {id:9,name:'Elegir Plataforma', state:true, projectID:1},
-            {id:10,name:'Elegir lenguaje', state:true, projectID:2},
-            {id:11,name:'Elegir back', state:true, projectID:3},
-            {id:12,name:'Elegir front', state:true, projectID:1},
+            {id:1,name:'Elegir Plataforma', state:false, projectID:1},
+            {id:2,name:'Elegir Plataforma', state:false, projectID:2},
+            {id:3,name:'Elegir Plataforma', state:false, projectID:3},
+            {id:4,name:'Elegir lenguaje', state:true, projectID:1},
+            {id:5,name:'Elegir lenguaje', state:true, projectID:2},
+            {id:6,name:'Elegir lenguaje', state:true, projectID:3},
         ],
         taskProject: null, 
         errorTask: false
@@ -62,7 +57,14 @@ const TasktState = ({children}) => {
             payload: id
         })
     }
-
+    //cambiar el estado de cada tarea
+    const taskStatus = (task) =>{
+       
+        dispatch({
+            type:TASK_STATUS,
+            payload: task
+        })
+    }
 
     return (
         <TaskContext.Provider
@@ -73,7 +75,8 @@ const TasktState = ({children}) => {
                 getTask,
                 addTask,
                 validateTask,
-                deleteTask
+                deleteTask,
+                taskStatus
 
             }}
         >
