@@ -1,3 +1,18 @@
+@keyframes animationList {
+  0% {
+    transform: translateY(-100px) scale(0);
+    background-color: var(--gris3);
+    border-radius: 5px;
+    font-weight: bold;
+
+  } 
+  100%{
+    transform: translateY(0px) scale(1);
+    background-color: inherit;
+  } 
+
+}
+
 :root {
   --blanco: #ffffff;
   --gris1: #edf2f6;
@@ -126,6 +141,7 @@ aside  {
 }
 .listado-proyectos li {
   margin-bottom: 2rem;
+  animation: animationList 2s ease-in forwards;
 }
 .listado-proyectos li a {
   font-size: 1.4rem;
@@ -199,7 +215,7 @@ aside  {
   align-items: center;
   margin-bottom: 1rem;
   border-radius: .5rem;
-
+  animation: animationList 2s ease-in forwards;
 }
 .sombra {
   -webkit-box-shadow: 0px 4px 10px -3px rgba(117,117,117,1);
