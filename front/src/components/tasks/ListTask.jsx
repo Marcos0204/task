@@ -11,12 +11,7 @@ const ListTask = () => {
     if(!project) return <h2>Selecciona un proyecto</h2>
 
     const [projectAtual] = project
-    // const tasks = [
-    //     {name:'Elegir Plataforma', state:true},
-    //     {name:'Elegir lenguaje', state:true},
-    //     {name:'Elegir back', state:true},
-    //     {name:'Elegir front', state:true},
-    // ]
+    
     const onClickDetele = () =>{
         deleteProject(projectAtual.id)
     }

@@ -4,10 +4,10 @@ import TaskContext from '../../context/tasks/TaskContext'
 
 const Project = ({project}) => {
   const { projectAtual } = useContext(ProjectContext)
-  const { getProjects } = useContext(TaskContext)
+  const { getTask } = useContext(TaskContext)
   const selectProjects = id => {
     projectAtual(id)
-    getProjects(id)
+    getTask(id)
   }
   return (
     <li>

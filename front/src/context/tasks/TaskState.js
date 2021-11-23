@@ -1,10 +1,12 @@
 import React, { useReducer } from 'react'
-import { v4 as uuidv4 } from 'uuid';
+//import { v4 as uuidv4 } from 'uuid';
 import TaskContext from './TaskContext';
 import { TaskReducers } from './TaskReducers';
 
 
 import { TASKS_PROJECT,
+    ADD_TASK,
+    VALIDATE_TASK
     } from '../../types'
 
 
@@ -26,25 +28,43 @@ const TasktState = ({children}) => {
             {name:'Elegir back', state:true, projectID:3},
             {name:'Elegir front', state:true, projectID:1},
         ],
-        taskProject: null
+        taskProject: null, 
+        errorTask: false
     }
     const [ state, dispatch ] =useReducer(TaskReducers, initialState);
 
-    const getProjects = (ID) =>{
-        
+    const getTask = (ID) =>{
         dispatch({
             type: TASKS_PROJECT,
             payload: ID
         })
-
     }
+    ////agrgar tareas 
+    const addTask = task => {
+        dispatch({
+            type: ADD_TASK,
+            payload: task
+        })
+    }
+
+    ///validar tarea
+    const validateTask = () => {
+        console.log('validate error')
+        dispatch({
+            type:VALIDATE_TASK
+        })
+    }
+
 
     return (
         <TaskContext.Provider
             value={{
                 task: state.task,
                 taskProject: state.taskProject,
-                getProjects,
+                errorTask: state.errorTask,
+                getTask,
+                addTask,
+                validateTask
 
             }}
         >
