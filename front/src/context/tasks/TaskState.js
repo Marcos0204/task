@@ -6,7 +6,8 @@ import { TaskReducers } from './TaskReducers';
 
 import { TASKS_PROJECT,
     ADD_TASK,
-    VALIDATE_TASK
+    VALIDATE_TASK,
+    DELETE_TASK
     } from '../../types'
 
 
@@ -15,18 +16,18 @@ const TasktState = ({children}) => {
   
     const initialState = {
         task: [
-            {name:'Elegir Plataforma', state:true, projectID:1},
-            {name:'Elegir lenguaje', state:true, projectID:2},
-            {name:'Elegir back', state:true, projectID:3},
-            {name:'Elegir front', state:true, projectID:1},
-            {name:'Elegir Plataforma', state:true, projectID:1},
-            {name:'Elegir lenguaje', state:true, projectID:2},
-            {name:'Elegir back', state:true, projectID:3},
-            {name:'Elegir front', state:true, projectID:1},
-            {name:'Elegir Plataforma', state:true, projectID:1},
-            {name:'Elegir lenguaje', state:true, projectID:2},
-            {name:'Elegir back', state:true, projectID:3},
-            {name:'Elegir front', state:true, projectID:1},
+            {id:1,name:'Elegir Plataforma', state:true, projectID:1},
+            {id:2,name:'Elegir lenguaje', state:true, projectID:2},
+            {id:3,name:'Elegir back', state:true, projectID:3},
+            {id:4,name:'Elegir front', state:true, projectID:1},
+            {id:5,name:'Elegir Plataforma', state:true, projectID:1},
+            {id:6,name:'Elegir lenguaje', state:true, projectID:2},
+            {id:7,name:'Elegir back', state:true, projectID:3},
+            {id:8,name:'Elegir front', state:true, projectID:1},
+            {id:9,name:'Elegir Plataforma', state:true, projectID:1},
+            {id:10,name:'Elegir lenguaje', state:true, projectID:2},
+            {id:11,name:'Elegir back', state:true, projectID:3},
+            {id:12,name:'Elegir front', state:true, projectID:1},
         ],
         taskProject: null, 
         errorTask: false
@@ -54,6 +55,13 @@ const TasktState = ({children}) => {
             type:VALIDATE_TASK
         })
     }
+    ///eliminar tarea
+    const deleteTask = id => {
+        dispatch({
+            type: DELETE_TASK,
+            payload: id
+        })
+    }
 
 
     return (
@@ -64,7 +72,8 @@ const TasktState = ({children}) => {
                 errorTask: state.errorTask,
                 getTask,
                 addTask,
-                validateTask
+                validateTask,
+                deleteTask
 
             }}
         >

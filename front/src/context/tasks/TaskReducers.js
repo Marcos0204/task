@@ -1,6 +1,7 @@
 import { TASKS_PROJECT,
   ADD_TASK,
-  VALIDATE_TASK
+  VALIDATE_TASK,
+  DELETE_TASK
 } from '../../types'
 
 
@@ -21,7 +22,12 @@ export  const TaskReducers = (state, action) => {
         return {
           ...state,
           errorTask: true
-        } 
+        }
+      case DELETE_TASK:
+        return {
+          ...state,
+          task: state.task.filter(item => item.id !== action.payload)
+        }
       default:
           return state
   }
