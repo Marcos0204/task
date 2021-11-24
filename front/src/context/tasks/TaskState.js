@@ -8,7 +8,8 @@ import { TASKS_PROJECT,
     ADD_TASK,
     VALIDATE_TASK,
     DELETE_TASK,
-    TASK_STATUS
+    TASK_STATUS,
+    TASK_SELETED
     } from '../../types'
 
 
@@ -25,7 +26,9 @@ const TasktState = ({children}) => {
             {id:6,name:'Elegir lenguaje', state:true, projectID:3},
         ],
         taskProject: null, 
-        errorTask: false
+        errorTask: false,
+        selectedTask: null,
+        tareaSeleccionada: null
     }
     const [ state, dispatch ] =useReducer(TaskReducers, initialState);
 
@@ -58,13 +61,22 @@ const TasktState = ({children}) => {
         })
     }
     //cambiar el estado de cada tarea
-    const taskStatus = (task) =>{
+    const taskStatus = (payload) =>{
        
         dispatch({
             type:TASK_STATUS,
-            payload: task
+            payload
         })
     }
+
+    ///seleccionar una tarea para editar
+    const saveTask = payload =>{
+        //console.log(payload)
+        dispatch({
+            type: TASK_SELETED,
+            payload
+        })
+    } 
 
     return (
         <TaskContext.Provider
@@ -72,11 +84,14 @@ const TasktState = ({children}) => {
                 task: state.task,
                 taskProject: state.taskProject,
                 errorTask: state.errorTask,
+                selectedTask: state.selectedTask,
+                tareaSeleccionada: state.tareaSeleccionada,
                 getTask,
                 addTask,
                 validateTask,
                 deleteTask,
-                taskStatus
+                taskStatus, 
+                saveTask
 
             }}
         >

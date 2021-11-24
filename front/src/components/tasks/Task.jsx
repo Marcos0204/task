@@ -4,7 +4,7 @@ import ProjectContext from '../../context/projects/ProjectContext'
 
 const Task = ({...task}) => {
     const { project } = useContext(ProjectContext)
-    const { deleteTask, getTask, taskStatus } = useContext(TaskContext)
+    const { deleteTask, getTask, taskStatus, saveTask } = useContext(TaskContext)
     const [projectActual] = project
 
     ///eliminar tarea
@@ -21,6 +21,11 @@ const Task = ({...task}) => {
             payload.state= true
         }
         taskStatus(payload)
+    }
+    ///selectionar tarea para editar
+    const selectTask = item => {
+        //console.log(item)
+        saveTask(item)
     }
   return (
     <li className="tarea sombra">
@@ -48,6 +53,7 @@ const Task = ({...task}) => {
             <button 
                 type='button'
                 className='btn btn-primario'
+                onClick={() => selectTask(task)}
             >
                 editar
             </button>
