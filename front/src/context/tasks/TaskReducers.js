@@ -35,7 +35,7 @@ export  const TaskReducers = (state, action) => {
         //console.log(action.payload)
         return {
           ...state,
-          taskProject:state.taskProject.map(item =>item.id === action.payload.id ? action.payload : item)
+          task: state.task.map(item =>item.id === action.payload.id ? action.payload : item)
         }
       case TASK_SELETED: 
         return {
@@ -45,7 +45,7 @@ export  const TaskReducers = (state, action) => {
       case UPGRADE_TASK:
         return{
           ...state,
-          taskProject:state.taskProject.map(item =>item.id === action.payload.id ? action.payload : item)
+          task:state.task.map(item =>item.id === action.payload.id ? action.payload : item)
         }
       default:
           return state
