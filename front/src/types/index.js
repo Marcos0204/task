@@ -14,3 +14,7 @@ export const TASK_STATUS = 'TASK_STATUS';
 export const TASK_SELETED = 'TASK_SELETED';
 export const UPGRADE_TASK = 'UPGRADE_TASK'; 
 export const CLEAN_TASK = 'CLEAN_TAS';
+
+
+export const SHOW_ALERT = 'SHOW_ALERT'; 
+export const HIDE_ALERT =  'HIDE_ALER';
