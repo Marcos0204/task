@@ -9,7 +9,8 @@ import { TASKS_PROJECT,
     VALIDATE_TASK,
     DELETE_TASK,
     TASK_STATUS,
-    TASK_SELETED
+    TASK_SELETED,
+    UPGRADE_TASK
     } from '../../types'
 
 
@@ -77,6 +78,13 @@ const TasktState = ({children}) => {
             payload
         })
     } 
+    ///actualizar o modificar una tarea
+    const upgradeTask = task =>{
+        dispatch({
+            type: UPGRADE_TASK,
+            payload: task
+        })
+    }
 
     return (
         <TaskContext.Provider
@@ -91,7 +99,8 @@ const TasktState = ({children}) => {
                 validateTask,
                 deleteTask,
                 taskStatus, 
-                saveTask
+                saveTask,
+                upgradeTask
 
             }}
         >
