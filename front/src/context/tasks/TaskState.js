@@ -6,7 +6,10 @@ import { TaskReducers } from './TaskReducers';
 
 import { TASKS_PROJECT,
     ADD_TASK,
-    VALIDATE_TASK
+    VALIDATE_TASK,
+    DELETE_TASK,
+    TASK_STATUS,
+    TASK_SELETED
     } from '../../types'
 
 
@@ -15,21 +18,17 @@ const TasktState = ({children}) => {
   
     const initialState = {
         task: [
-            {name:'Elegir Plataforma', state:true, projectID:1},
-            {name:'Elegir lenguaje', state:true, projectID:2},
-            {name:'Elegir back', state:true, projectID:3},
-            {name:'Elegir front', state:true, projectID:1},
-            {name:'Elegir Plataforma', state:true, projectID:1},
-            {name:'Elegir lenguaje', state:true, projectID:2},
-            {name:'Elegir back', state:true, projectID:3},
-            {name:'Elegir front', state:true, projectID:1},
-            {name:'Elegir Plataforma', state:true, projectID:1},
-            {name:'Elegir lenguaje', state:true, projectID:2},
-            {name:'Elegir back', state:true, projectID:3},
-            {name:'Elegir front', state:true, projectID:1},
+            {id:1,name:'Elegir Plataforma', state:false, projectID:1},
+            {id:2,name:'Elegir Plataforma', state:false, projectID:2},
+            {id:3,name:'Elegir Plataforma', state:false, projectID:3},
+            {id:4,name:'Elegir lenguaje', state:true, projectID:1},
+            {id:5,name:'Elegir lenguaje', state:true, projectID:2},
+            {id:6,name:'Elegir lenguaje', state:true, projectID:3},
         ],
         taskProject: null, 
-        errorTask: false
+        errorTask: false,
+        selectedTask: null,
+        tareaSeleccionada: null
     }
     const [ state, dispatch ] =useReducer(TaskReducers, initialState);
 
@@ -54,7 +53,30 @@ const TasktState = ({children}) => {
             type:VALIDATE_TASK
         })
     }
+    ///eliminar tarea
+    const deleteTask = id => {
+        dispatch({
+            type: DELETE_TASK,
+            payload: id
+        })
+    }
+    //cambiar el estado de cada tarea
+    const taskStatus = (payload) =>{
+       
+        dispatch({
+            type:TASK_STATUS,
+            payload
+        })
+    }
 
+    ///seleccionar una tarea para editar
+    const saveTask = payload =>{
+        //console.log(payload)
+        dispatch({
+            type: TASK_SELETED,
+            payload
+        })
+    } 
 
     return (
         <TaskContext.Provider
@@ -62,9 +84,14 @@ const TasktState = ({children}) => {
                 task: state.task,
                 taskProject: state.taskProject,
                 errorTask: state.errorTask,
+                selectedTask: state.selectedTask,
+                tareaSeleccionada: state.tareaSeleccionada,
                 getTask,
                 addTask,
-                validateTask
+                validateTask,
+                deleteTask,
+                taskStatus, 
+                saveTask
 
             }}
         >

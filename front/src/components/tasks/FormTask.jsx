@@ -1,14 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import ProjectContext from '../../context/projects/ProjectContext'
 import TaskContext from '../../context/tasks/TaskContext'
 
 const FormTask = () => {
   const { project } = useContext(ProjectContext)
-  const { errorTask, addTask, validateTask, getTask } = useContext(TaskContext)
+  const { tareaSeleccionada, taskProject, errorTask, addTask, validateTask, getTask } = useContext(TaskContext)
 
   const [task, setTask] = useState({
     name:''
   })
+  useEffect(() => {
+    if(tareaSeleccionada !== null) {
+      setTask(tareaSeleccionada)
+    }
+  }, [tareaSeleccionada])
+  
   ///
   if(!project) return null
   
