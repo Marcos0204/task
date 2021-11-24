@@ -4,7 +4,7 @@ import TaskContext from '../../context/tasks/TaskContext'
 
 const FormTask = () => {
   const { project } = useContext(ProjectContext)
-  const { tareaSeleccionada, taskProject, errorTask, addTask, validateTask, getTask } = useContext(TaskContext)
+  const { tareaSeleccionada, taskProject, errorTask, addTask, validateTask, getTask, upgradeTask } = useContext(TaskContext)
 
   const [task, setTask] = useState({
     name:''
@@ -38,10 +38,16 @@ const FormTask = () => {
       validateTask()
       return;
     }
-
-    ///agregar la tarea al state
-    task.projectID= projectActual.id
-    addTask(task)
+    if(tareaSeleccionada === null) {
+      ///agregar la tarea al state
+      task.projectID= projectActual.id
+      addTask(task)
+      
+    } else {
+      //actualizar tarea
+      upgradeTask(task)
+    }
+    
     getTask(projectActual.id)
 
     ///reiniciar form
