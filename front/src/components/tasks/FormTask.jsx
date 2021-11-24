@@ -68,7 +68,7 @@ const FormTask = () => {
             <input
               type="submit"
               className='btn btn-primario btn-block btn-submit'
-              value='Agregar tarea'
+              value={ tareaSeleccionada ? 'Editar tarea' :'Agregar tarea'}
               />
           </div>
       </form>
