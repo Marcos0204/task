@@ -12,10 +12,9 @@ const ListTask = () => {
     useEffect(() =>{
         if(project !== null){
              const [projectAtual] = project
-            console.log('cambio')
             getTask(projectAtual.id)
         }
-        
+        // eslint-disable-next-line
     }, [task])
     if(!project) return <h2>Selecciona un proyecto</h2>
     const [projectAtual] = project
