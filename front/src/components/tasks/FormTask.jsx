@@ -4,7 +4,7 @@ import TaskContext from '../../context/tasks/TaskContext'
 
 const FormTask = () => {
   const { project } = useContext(ProjectContext)
-  const { tareaSeleccionada, taskProject, errorTask, addTask, validateTask, getTask, upgradeTask } = useContext(TaskContext)
+  const { tareaSeleccionada, errorTask, addTask, validateTask, getTask, upgradeTask, clearTask } = useContext(TaskContext)
 
   const [task, setTask] = useState({
     name:''
@@ -46,6 +46,9 @@ const FormTask = () => {
     } else {
       //actualizar tarea
       upgradeTask(task)
+
+      ///elimina tarea seleccionada del state
+      clearTask()
     }
     ///obtener y filtrar las tareas del proyecto actual
     getTask(projectActual.id)

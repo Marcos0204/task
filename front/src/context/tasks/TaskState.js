@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-//import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import TaskContext from './TaskContext';
 import { TaskReducers } from './TaskReducers';
 
@@ -10,7 +10,8 @@ import { TASKS_PROJECT,
     DELETE_TASK,
     TASK_STATUS,
     TASK_SELETED,
-    UPGRADE_TASK
+    UPGRADE_TASK,
+    CLEAN_TASK
     } from '../../types'
 
 
@@ -41,6 +42,7 @@ const TasktState = ({children}) => {
     }
     ////agrgar tareas 
     const addTask = task => {
+        task.id = uuidv4()
         dispatch({
             type: ADD_TASK,
             payload: task
@@ -85,7 +87,12 @@ const TasktState = ({children}) => {
             payload: task
         })
     }
-
+    ////limpiar tarea seleccionada
+    const clearTask= () => {
+        dispatch({
+            type: CLEAN_TASK
+        })
+    }
     return (
         <TaskContext.Provider
             value={{
@@ -100,7 +107,8 @@ const TasktState = ({children}) => {
                 deleteTask,
                 taskStatus, 
                 saveTask,
-                upgradeTask
+                upgradeTask,
+                clearTask
 
             }}
         >

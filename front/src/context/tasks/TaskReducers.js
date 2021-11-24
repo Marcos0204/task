@@ -4,7 +4,8 @@ import { TASKS_PROJECT,
   DELETE_TASK,
   TASK_STATUS,
   TASK_SELETED,
-  UPGRADE_TASK
+  UPGRADE_TASK,
+  CLEAN_TASK
 } from '../../types'
 
 
@@ -46,6 +47,11 @@ export  const TaskReducers = (state, action) => {
         return{
           ...state,
           task:state.task.map(item =>item.id === action.payload.id ? action.payload : item)
+        }
+      case CLEAN_TASK: 
+        return {
+          ...state,
+          tareaSeleccionada: null
         }
       default:
           return state
