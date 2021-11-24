@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import Task from './Task'
 import ProjectContext from '../../context/projects/ProjectContext'
 import TaskContext from '../../context/tasks/TaskContext'
@@ -6,10 +6,18 @@ import TaskContext from '../../context/tasks/TaskContext'
 
 const ListTask = () => {
     const { project, deleteProject } = useContext(ProjectContext)
-    const { taskProject } = useContext(TaskContext)
+    const { taskProject, task, getTask } = useContext(TaskContext)
     
+    
+    useEffect(() =>{
+        if(project !== null){
+             const [projectAtual] = project
+            console.log('cambio')
+            getTask(projectAtual.id)
+        }
+        
+    }, [task])
     if(!project) return <h2>Selecciona un proyecto</h2>
-
     const [projectAtual] = project
     
     const onClickDetele = () =>{

@@ -47,7 +47,7 @@ const FormTask = () => {
       //actualizar tarea
       upgradeTask(task)
     }
-    
+    ///obtener y filtrar las tareas del proyecto actual
     getTask(projectActual.id)
 
     ///reiniciar form
