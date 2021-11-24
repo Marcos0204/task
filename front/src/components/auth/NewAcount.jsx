@@ -30,6 +30,14 @@ const NewAcount = () => {
 
 
     ///validar que los dos campos sean iguales
+    if(password.length < 6 ) {
+      showAlert('El password debe ser de almenos 6 caravteres', 'alerta-error')
+          return;
+    }
+    if(password !== confir) {
+      showAlert('Las contraseñas no coinciden', 'alerta-error')
+          return;
+    }
 
     //pasar al action
 
