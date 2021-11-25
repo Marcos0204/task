@@ -30,6 +30,7 @@ const AuthState = ({children}) => {
                 type: REGISTRATION_SUCCESS,
                 payload: res.data
             })
+            //obtener el usuario
             userAuthenticated()
         } catch (error) {
             const {data: {msg}} = error.response
@@ -53,7 +54,7 @@ const AuthState = ({children}) => {
         
         try {
             const {data} = await clientAxios.get('/api/auth')
-            console.log(data)
+            //console.log(data)
             dispatch({
                 type: GET_USER,
                 payload: data.user
@@ -65,6 +66,30 @@ const AuthState = ({children}) => {
             })
         }
     }
+    
+    const logIn = async (DATA) =>{
+        try {
+            const res = await clientAxios.post('/api/auth', DATA)
+           // console.log(res)
+            dispatch({
+                type: LOGIN_SUCCESS,
+                payload: res.data
+            })
+            //obtener el usuario
+            userAuthenticated()
+        } catch (error) {
+            const {data: {msg}} = error.response
+            //console.log(msg)
+            const alert = {
+                msg,
+                category: 'alerta-error'
+            }
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: alert
+            })
+        }
+    }
     /////
     return (
         <AuthContext.Provider
@@ -73,7 +98,9 @@ const AuthState = ({children}) => {
                 authenticated: state.authenticated,
                 user: state.user,
                 message: state.message,
-                registerUser
+                registerUser,
+                logIn,
+                userAuthenticated
             }}      
         >
         {children}

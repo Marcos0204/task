@@ -11,6 +11,7 @@ import {REGISTRATION_SUCCESS,
 export  const AuthReducer = (state, action) => {
     switch (action.type) {
         case REGISTRATION_SUCCESS:
+        case LOGIN_SUCCESS:
             localStorage.setItem('token', action.payload.token);
             return {
                 ...state,
@@ -20,7 +21,9 @@ export  const AuthReducer = (state, action) => {
         case GET_USER :
             return {
                 ...state,
-                user: action.payload
+                user: action.payload,
+                authenticated: true,
+                //message: null
             }
         case LOGIN_ERROR:
         case REGiSTRATION_ERROR:
