@@ -1,11 +1,21 @@
-import React, {useState, useContext} from 'react';
-import { Link } from 'react-router-dom'
+import React, {useState, useContext, useEffect} from 'react';
+import { Link, useNavigate } from 'react-router-dom'
 import AlertContext from '../../context/alerts/AlertContext'
 import AuthContext from '../../context/authentication/AuthContext';
 
 const NewAcount = () => {
   const { alert, showAlert} = useContext(AlertContext);
-  const { registerUser } = useContext(AuthContext);
+  const { message, authenticated, registerUser } = useContext(AuthContext);
+  //////en caso de que el usuario ya exista o este auntenticado
+  let navigate = useNavigate();
+  useEffect(() =>{
+    if(authenticated) {
+      navigate('/proyectos')
+    }
+    if(message){
+      showAlert(message.msg, message.category)
+    }
+  }, [message, authenticated])
   const [ user, setUser ] = useState({
     name:'',
     email:'',
