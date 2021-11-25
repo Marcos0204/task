@@ -6,6 +6,7 @@ const NavBar = () => {
   const { user, userAuthenticated, signOff } = useContext(AuthContext)
   useEffect(()=>{
     userAuthenticated()
+   
   },)
   return (
     <header className='app-header'>
@@ -15,6 +16,9 @@ const NavBar = () => {
             <button
               className='btn btn-blank cerrar-sesion'
               onClick={()=> signOff()}
+              style={{
+                color:'white'
+              }}
             >
               Cerrar Sesión
             </button>
