@@ -18,3 +18,14 @@ export const CLEAN_TASK = 'CLEAN_TAS';
 
 export const SHOW_ALERT = 'SHOW_ALERT'; 
 export const HIDE_ALERT =  'HIDE_ALER';
+
+export const REGISTRATION_SUCCESS =  'REGISTRATION_SUCCESS';
+export const REGiSTRATION_ERROR = 'REGUSTRATION_ERROR';
+export const GET_USER = 'GET_USER';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const SIGN_OFF = 'SIGN_OFF';
+
+
+
+

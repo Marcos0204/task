@@ -1,9 +1,11 @@
 import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom'
 import AlertContext from '../../context/alerts/AlertContext'
+import AuthContext from '../../context/authentication/AuthContext';
 
 const NewAcount = () => {
-  const { alert, showAlert} = useContext(AlertContext)
+  const { alert, showAlert} = useContext(AlertContext);
+  const { registerUser } = useContext(AuthContext);
   const [ user, setUser ] = useState({
     name:'',
     email:'',
@@ -40,7 +42,11 @@ const NewAcount = () => {
     }
 
     //pasar al action
-
+    registerUser({
+      name,
+      email,
+      password
+    })
     ///limpiar campos
     setUser({
       email:'',
