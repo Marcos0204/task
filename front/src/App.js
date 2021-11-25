@@ -13,6 +13,7 @@ import Projects from './components/projects/Projects';
 import ProjectState from './context/projects/ProjectState';
 import TasktState from './context/tasks/TaskState';
 import AlertState from './context/alerts/AlertState';
+import AuthState from './context/authentication/AuthState';
 
 const App = () => {
 
@@ -20,13 +21,15 @@ const App = () => {
     <ProjectState>
       <TasktState>
         <AlertState>
-          <Router>
-            <Routes>
-              <Route exact path='/' element={<Login/>} />
-              <Route exact path='/nueva-cuenta' element={<NewAcount/>} />
-              <Route exact path='/proyectos' element={<Projects/>} />
-            </Routes>
-          </Router>
+          <AuthState>
+            <Router>
+              <Routes>
+                <Route exact path='/' element={<Login/>} />
+                <Route exact path='/nueva-cuenta' element={<NewAcount/>} />
+                <Route exact path='/proyectos' element={<Projects/>} />
+              </Routes>
+            </Router>
+          </AuthState>
         </AlertState>
       </TasktState>
     </ProjectState>
