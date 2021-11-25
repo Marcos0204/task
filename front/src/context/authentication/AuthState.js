@@ -60,7 +60,6 @@ const AuthState = ({children}) => {
                 payload: data.user
             })
         } catch (error) {
-            console.log(error.response)
             dispatch({
                 type: LOGIN_ERROR
             })
@@ -90,6 +89,12 @@ const AuthState = ({children}) => {
             })
         }
     }
+    const signOff = () => {
+        dispatch({
+            type: SIGN_OFF
+        })
+    }
+
     /////
     return (
         <AuthContext.Provider
@@ -100,7 +105,8 @@ const AuthState = ({children}) => {
                 message: state.message,
                 registerUser,
                 logIn,
-                userAuthenticated
+                userAuthenticated,
+                signOff
             }}      
         >
         {children}

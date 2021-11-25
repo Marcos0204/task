@@ -25,12 +25,15 @@ export  const AuthReducer = (state, action) => {
                 authenticated: true,
                 //message: null
             }
+        case SIGN_OFF:
         case LOGIN_ERROR:
         case REGiSTRATION_ERROR:
             localStorage.removeItem('token')
             return {
                 ...state,
                 token: null,
+                user:null,
+                authenticated:null,
                 message: action.payload
             }
     
