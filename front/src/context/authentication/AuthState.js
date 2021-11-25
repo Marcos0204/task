@@ -2,6 +2,7 @@ import React, { useReducer } from 'react'
 import { AuthReducer } from './AuthReducer';
 import AuthContext from './AuthContext';
 import clientAxios from '../../config/axios'
+import tokenAuth from '../../config/tokenAuth';
 import {REGISTRATION_SUCCESS,
         REGiSTRATION_ERROR,
         GET_USER,
@@ -20,14 +21,16 @@ const AuthState = ({children}) => {
     }
     const [ state, dispatch ] = useReducer(AuthReducer, intitialState)
     ///////////////funciones
+    //registrar usuario
     const registerUser = async DATA => {
         try {
             const res = await clientAxios.post('/api/usuario', DATA)
-            console.log(res.data)
+            //console.log(res.data)
             dispatch({
                 type: REGISTRATION_SUCCESS,
                 payload: res.data
             })
+            userAuthenticated()
         } catch (error) {
             const {data: {msg}} = error.response
             const alert = {
@@ -40,6 +43,29 @@ const AuthState = ({children}) => {
             })
         }
     }
+    //usuario autenticado
+    const userAuthenticated = async ()=>{
+        const token = localStorage.getItem('token')
+        if(token){
+            //funcion para enviar el token por header
+            tokenAuth(token)
+        }
+        
+        try {
+            const {data} = await clientAxios.get('/api/auth')
+            console.log(data)
+            dispatch({
+                type: GET_USER,
+                payload: data.user
+            })
+        } catch (error) {
+            console.log(error.response)
+            dispatch({
+                type: LOGIN_ERROR
+            })
+        }
+    }
+    /////
     return (
         <AuthContext.Provider
             value={{
