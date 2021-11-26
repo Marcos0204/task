@@ -23,6 +23,7 @@ export  const AuthReducer = (state, action) => {
                 ...state,
                 user: action.payload,
                 authenticated: true,
+                
                 //message: null
             }
         case SIGN_OFF:
