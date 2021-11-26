@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Navigate
 } from "react-router-dom";
 import Login from './components/auth/Login';
 import NewAcount from './components/auth/NewAcount';
@@ -22,7 +23,7 @@ if(token) {
 }
 
 const App = () => {
-
+  const auth= true
   return (
     <ProjectState>
       <TasktState>
