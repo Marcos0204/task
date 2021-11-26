@@ -9,10 +9,10 @@ const authController = require('../controllers/authController');
 // api auth
 
 router.post('/',
-    [
-        check('email', 'agrega un email valido').isEmail(),
-        check('password', 'el password debe ser minimo de 6 caracteres').isLength({min:6})
-    ],
+    // [
+    //     check('email', 'agrega un email valido').isEmail(),
+    //     check('password', 'el password debe ser minimo de 6 caracteres').isLength({min:6})
+    // ],
     authController.authenticateUser
 );
 
