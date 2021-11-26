@@ -16,6 +16,7 @@ import AlertState from './context/alerts/AlertState';
 import AuthState from './context/authentication/AuthState';
 import tokenAuth from './config/tokenAuth'
 import RoutesPrivate from './components/routes/RoutesPrivate';
+import RoutesPlublic from './components/routes/RoutesPublic'
 
 const token = localStorage.getItem('token')
 if(token) {
@@ -31,13 +32,21 @@ const App = () => {
           <AuthState>
             <Router>
               <Routes>
-                <Route exact path='/' element={<Login/>} />
-                <Route exact path='/nueva-cuenta' element={<NewAcount/>} />
-                <Route exact path='/proyectos' element={
-                  <RoutesPrivate>
-                    <Projects />
-                  </RoutesPrivate>
-                } />
+                  <Route exact path='/' element={
+                      <RoutesPlublic>
+                        <Login/>
+                      </RoutesPlublic>
+                    } />
+                  <Route exact path='/nueva-cuenta' element={
+                    <RoutesPlublic>
+                      <NewAcount/>
+                    </RoutesPlublic>
+                  } />
+                  <Route exact path='/proyectos' element={
+                    <RoutesPrivate>
+                      <Projects />
+                    </RoutesPrivate>
+                  } />
               </Routes>
             </Router>
           </AuthState>
