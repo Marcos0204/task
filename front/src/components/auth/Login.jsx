@@ -27,11 +27,17 @@ const Login = () => {
     }
 
     // //pasar al action
+
+    ///limpiar el statate
+    setUser({
+      email:'',
+      password:''
+    })
    
   }
   return (
     <div className='form-usuario'>
-      {/* {alert && <div className= {`alerta ${alert.category}`}>{alert.msg} </div> } */}
+      {alert && <div className= {`alerta ${alert.category}`}>{alert.msg} </div> }
       <div className="contenedor-form sombra-drak">
         <h1>iniciar sesion</h1>
         <form 

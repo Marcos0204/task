@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import AlertContext from '../../context/alerts/AlertContext'
-import AuthContext from '../../context/authentication/AuthContext';
+
 
 const NewAcount = () => {
   const { alert, showAlert} = useContext(AlertContext);
