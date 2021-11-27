@@ -3,8 +3,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Navigate
+  Route
 } from "react-router-dom";
 import Login from './components/auth/Login';
 import NewAcount from './components/auth/NewAcount';
@@ -16,6 +15,8 @@ import TasktState from './context/tasks/TaskState';
 import AlertState from './context/alerts/AlertState';
 import AuthState from './context/authentication/AuthState';
 import tokenAuth from './config/tokenAuth'
+import RoutesPrivate from './components/routes/RoutesPrivate';
+import RoutesPlublic from './components/routes/RoutesPublic'
 
 const token = localStorage.getItem('token')
 if(token) {
@@ -31,9 +32,21 @@ const App = () => {
           <AuthState>
             <Router>
               <Routes>
-                <Route exact path='/' element={<Login/>} />
-                <Route exact path='/nueva-cuenta' element={<NewAcount/>} />
-                <Route exact path='/proyectos' element={<Projects/>} />
+                  <Route exact path='/' element={
+                      <RoutesPlublic>
+                        <Login/>
+                      </RoutesPlublic>
+                    } />
+                  <Route exact path='/nueva-cuenta' element={
+                    <RoutesPlublic>
+                      <NewAcount/>
+                    </RoutesPlublic>
+                  } />
+                  <Route exact path='/proyectos' element={
+                    <RoutesPrivate>
+                      <Projects />
+                    </RoutesPrivate>
+                  } />
               </Routes>
             </Router>
           </AuthState>
@@ -44,3 +57,22 @@ const App = () => {
 }
 
 export default App
+
+
+{           /* <Routes>
+                <Route exact path='/' element={
+                  <RoutesPlublic>
+                    <Login/>
+                  </RoutesPlublic>
+                } />
+                <Route exact path='/nueva-cuenta' element={
+                  <RoutesPlublic>
+                    <NewAcount/>
+                  </RoutesPlublic>
+                } />
+                <Route exact path='/proyectos' element={
+                  <RoutesPrivate>
+                    <Projects />
+                  </RoutesPrivate>
+                } />
+              </Routes> */}
