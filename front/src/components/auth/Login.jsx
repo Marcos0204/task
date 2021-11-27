@@ -1,22 +1,11 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import AlertContext from '../../context/alerts/AlertContext'
-import AuthContext from '../../context/authentication/AuthContext';
+
 
 const Login = () => {
   const { alert, showAlert} = useContext(AlertContext);
-  const { message, authenticated, logIn } = useContext(AuthContext);
-
-  let navigate = useNavigate();
-  useEffect(() =>{
-    if(authenticated) {
-      navigate('/proyectos')
-    }
-    if(message){
-      showAlert(message.msg, message.category)
-    }
-    // eslint-disable-next-line
-  }, [message, authenticated])
+ 
 
   const [ user, setUser ] = useState({
     email:'',
@@ -37,17 +26,12 @@ const Login = () => {
       return;
     }
 
-    //pasar al action
-    logIn({email, password})
-    ///limpiar campos
-    setUser({
-      email:'',
-      password:''
-    })
+    // //pasar al action
+   
   }
   return (
     <div className='form-usuario'>
-      {alert && <div className= {`alerta ${alert.category}`}>{alert.msg} </div> }
+      {/* {alert && <div className= {`alerta ${alert.category}`}>{alert.msg} </div> } */}
       <div className="contenedor-form sombra-drak">
         <h1>iniciar sesion</h1>
         <form 

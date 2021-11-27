@@ -5,18 +5,7 @@ import AuthContext from '../../context/authentication/AuthContext';
 
 const NewAcount = () => {
   const { alert, showAlert} = useContext(AlertContext);
-  const { message, authenticated, registerUser } = useContext(AuthContext);
-  //////en caso de que el usuario ya exista o este auntenticado
-  let navigate = useNavigate();
-  useEffect(() =>{
-    if(authenticated) {
-      navigate('/proyectos')
-    }
-    if(message){
-      showAlert(message.msg, message.category)
-    }
-    // eslint-disable-next-line
-  }, [message, authenticated])
+  
   const [ user, setUser ] = useState({
     name:'',
     email:'',
@@ -53,11 +42,7 @@ const NewAcount = () => {
     }
 
     //pasar al action
-    registerUser({
-      name,
-      email,
-      password
-    })
+    
     ///limpiar campos
     setUser({
       email:'',

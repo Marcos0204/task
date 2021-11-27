@@ -22,79 +22,7 @@ const AuthState = ({children}) => {
     const [ state, dispatch ] = useReducer(AuthReducer, intitialState)
     ///////////////funciones
     //registrar usuario
-    const registerUser = async DATA => {
-        try {
-            const res = await clientAxios.post('/api/usuario', DATA)
-            //console.log(res.data)
-            dispatch({
-                type: REGISTRATION_SUCCESS,
-                payload: res.data
-            })
-            //obtener el usuario
-            userAuthenticated()
-        } catch (error) {
-            const {data: {msg}} = error.response
-            const alert = {
-                msg,
-                category: 'alerta-error'
-            }
-            dispatch({
-                type: REGiSTRATION_ERROR,
-                payload: alert
-            })
-        }
-    }
-    //usuario autenticado
-    const userAuthenticated = async ()=>{
-        const token = localStorage.getItem('token')
-        if(token){
-            //funcion para enviar el token por header
-            tokenAuth(token)
-        }
-        
-        try {
-            const {data} = await clientAxios.get('/api/auth')
-            //console.log(data)
-            dispatch({
-                type: GET_USER,
-                payload: data.user
-            })
-        } catch (error) {
-            dispatch({
-                type: LOGIN_ERROR
-            })
-        }
-    }
     
-    const logIn = async (DATA) =>{
-        try {
-            const res = await clientAxios.post('/api/auth', DATA)
-           // console.log(res)
-            dispatch({
-                type: LOGIN_SUCCESS,
-                payload: res.data
-            })
-            //obtener el usuario
-            userAuthenticated()
-        } catch (error) {
-            const {data: {msg}} = error.response
-            //console.log(msg)
-            const alert = {
-                msg,
-                category: 'alerta-error'
-            }
-            dispatch({
-                type: LOGIN_ERROR,
-                payload: alert
-            })
-        }
-    }
-    const signOff = () => {
-        dispatch({
-            type: SIGN_OFF
-        })
-    }
-
     /////
     return (
         <AuthContext.Provider
@@ -103,10 +31,7 @@ const AuthState = ({children}) => {
                 authenticated: state.authenticated,
                 user: state.user,
                 message: state.message,
-                registerUser,
-                logIn,
-                userAuthenticated,
-                signOff
+                
             }}      
         >
         {children}

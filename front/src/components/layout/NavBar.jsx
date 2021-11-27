@@ -1,21 +1,16 @@
-import React, { useContext, useEffect } from 'react'
-import AuthContext from '../../context/authentication/AuthContext'; 
+import React, { } from 'react'
+
 
 
 const NavBar = () => {
-  const { user, userAuthenticated, signOff } = useContext(AuthContext)
-  useEffect(()=>{
-    userAuthenticated()
-   
-  },)
+  
   return (
     <header className='app-header'>
-        {user && <p className='nombre-usuario'>Hola! <span>{user.name}</span> </p>}
+         <p className='nombre-usuario'>Hola! <span>Leon!</span> </p>
         
         <nav className='nav-principal'>
             <button
               className='btn btn-blank cerrar-sesion'
-              onClick={()=> signOff()}
               style={{
                 color:'white'
               }}
