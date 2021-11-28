@@ -18,13 +18,13 @@ import tokenAuth from './config/tokenAuth'
 import RoutesPrivate from './components/routes/RoutesPrivate';
 import RoutesPlublic from './components/routes/RoutesPublic'
 
-const token = localStorage.getItem('token')
-if(token) {
-  tokenAuth(token)
-}
+// const token = localStorage.getItem('token')
+// if(token) {
+//   tokenAuth(token)
+// }
 
 const App = () => {
-  const auth= true
+ // console.log(process.env.REACT_APP_BACKEND_URL)
   return (
     <ProjectState>
       <TasktState>
