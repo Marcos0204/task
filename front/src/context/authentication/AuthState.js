@@ -65,6 +65,28 @@ const AuthState = ({children}) => {
             })
         }
     }
+    ////inciar sesion
+    const logIn = async (DATA) => {
+        try {
+            const res = await clientAxios.post('/api/auth', DATA)
+           // console.log(res)
+            dispatch({
+                type: LOGIN_SUCCESS,
+                payload: res.data
+            })
+            userAuthenticated()
+        } catch (error) {
+            //console.log(error.response.data.msg)
+            const alert = {
+                msg: error.response.data.msg,
+                category: 'alerta-error'
+            }
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: alert
+            })
+        }
+    }
     
     /////
     return (
@@ -74,7 +96,8 @@ const AuthState = ({children}) => {
                 authenticated: state.authenticated,
                 user: state.user,
                 message: state.message,
-                registerUser
+                registerUser,
+                logIn
             }}      
         >
         {children}

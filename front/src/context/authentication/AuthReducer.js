@@ -10,6 +10,7 @@ import {REGISTRATION_SUCCESS,
 
 export  const AuthReducer = (state, action) => {
     switch (action.type) {
+        case LOGIN_SUCCESS:
         case REGISTRATION_SUCCESS:
             localStorage.setItem('token', action.payload.token)
             return{

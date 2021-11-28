@@ -1,11 +1,22 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import AlertContext from '../../context/alerts/AlertContext'
+import AuthContext from '../../context/authentication/AuthContext';
 
 
 const Login = () => {
   const { alert, showAlert} = useContext(AlertContext);
- 
+  const { message, authenticated, logIn } = useContext(AuthContext)
+  const navigate = useNavigate()
+  ////el caso de que el usuario se haya autenticado o resgistrado
+  useEffect(() =>{
+    if(authenticated){
+      navigate('/proyectos')
+    }
+    if(message){
+      showAlert(message.msg, message.category)
+    }
+  }, [message, authenticated])
 
   const [ user, setUser ] = useState({
     email:'',
@@ -27,7 +38,9 @@ const Login = () => {
     }
 
     // //pasar al action
-
+    logIn({
+      email, password
+    })
     ///limpiar el statate
     setUser({
       email:'',
