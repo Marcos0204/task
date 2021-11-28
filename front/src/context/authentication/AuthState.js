@@ -87,6 +87,12 @@ const AuthState = ({children}) => {
             })
         }
     }
+    ////cerrar sesion
+    const signOff = () =>{
+        dispatch({
+            type: SIGN_OFF
+        })
+    }
     
     /////
     return (
@@ -97,7 +103,9 @@ const AuthState = ({children}) => {
                 user: state.user,
                 message: state.message,
                 registerUser,
-                logIn
+                logIn,
+                userAuthenticated,
+                signOff
             }}      
         >
         {children}
