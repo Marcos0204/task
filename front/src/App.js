@@ -32,8 +32,16 @@ const App = () => {
           <AuthState>
             <Router>
               <Routes>
-                  <Route exact path='/' element={<Login/> } />
-                  <Route exact path='/nueva-cuenta' element={<NewAcount/> } />
+                  <Route exact path='/' element={
+                    <RoutesPlublic>
+                      <Login/>
+                    </RoutesPlublic>
+                    } />
+                  <Route exact path='/nueva-cuenta' element={
+                    <RoutesPlublic>
+                      <NewAcount/>
+                    </RoutesPlublic>
+                  } />
                   <Route exact path='/proyectos' element={
                     <RoutesPrivate>
                       <Projects />

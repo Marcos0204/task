@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import AuthContext from '../../context/authentication/AuthContext'
 
 
@@ -30,6 +30,7 @@ const NavBar = () => {
             >
               Cerrar Sesión
             </button>
+            <Link to='/'>login</Link>
         </nav>
     </header>
   )
