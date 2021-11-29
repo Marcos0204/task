@@ -17,13 +17,15 @@ export  const AuthReducer = (state, action) => {
                 ...state,
                 authenticated: true,
                 message: null,
-                token: localStorage.getItem('token')
+                token: localStorage.getItem('token'),
+                
             }
         case GET_USER:
             return {
                 ...state,
                 user: action.payload,
                 authenticated: true,
+                loading: false
             }
 
         case LOGIN_ERROR:
@@ -32,14 +34,16 @@ export  const AuthReducer = (state, action) => {
             return {
                 ...state,
                 token: null,
-                message: action.payload
+                message: action.payload,
+                loading: true
             }
         case SIGN_OFF:
             localStorage.removeItem('token')
             return {
                 authenticated: null,
                 user: null,
-                message: null
+                message: null,
+                loading: true
             }
         default:
             return state;

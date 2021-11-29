@@ -4,15 +4,17 @@ import AuthContext from '../../context/authentication/AuthContext'
 
 
 const RoutesPrivate = ({children}) => {
-  const { authenticated, userAuthenticated } = useContext(AuthContext)
-  //let token = 
+  const { authenticated, loading, userAuthenticated } = useContext(AuthContext)
+  let token = localStorage.getItem('token') 
   useEffect(() =>{
-    userAuthenticated() 
+    if(token) {
+      userAuthenticated()
+    } 
   })
-  return authenticated ? (
-    children
+  return !authenticated && !loading ? (
+    <Navigate to='/'/> 
   ) : (
-    <Navigate to='/'/>
+    children
   )
 }
 
