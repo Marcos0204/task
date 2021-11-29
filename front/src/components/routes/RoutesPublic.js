@@ -12,7 +12,7 @@ const RoutesPlublic = ({children}) => {
     } 
   })
     //console.log(authenticated)
-  return authenticated  ? (
+  return authenticated && !loading ? (
     <Navigate to='/proyectos'/>
   ) : (
     children

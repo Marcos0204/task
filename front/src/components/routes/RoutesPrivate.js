@@ -11,10 +11,10 @@ const RoutesPrivate = ({children}) => {
       userAuthenticated()
     } 
   })
-  return !authenticated && !loading ? (
-    <Navigate to='/'/> 
+  return authenticated && !loading ? (
+    children 
   ) : (
-    children
+    <Navigate to='/'/>
   )
 }
 
