@@ -56,23 +56,4 @@ const App = () => {
   )
 }
 
-export default App
-
-
-{           /* <Routes>
-                <Route exact path='/' element={
-                  <RoutesPlublic>
-                    <Login/>
-                  </RoutesPlublic>
-                } />
-                <Route exact path='/nueva-cuenta' element={
-                  <RoutesPlublic>
-                    <NewAcount/>
-                  </RoutesPlublic>
-                } />
-                <Route exact path='/proyectos' element={
-                  <RoutesPrivate>
-                    <Projects />
-                  </RoutesPrivate>
-                } />
-              </Routes> */}
+export default App;

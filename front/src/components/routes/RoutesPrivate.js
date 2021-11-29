@@ -1,10 +1,14 @@
-import React, { useContext} from 'react'
-import { Route, Navigate } from 'react-router-dom'
+import React, { useContext, useEffect} from 'react'
+import { Navigate } from 'react-router-dom'
 import AuthContext from '../../context/authentication/AuthContext'
 
 
 const RoutesPrivate = ({children}) => {
-    const { authenticated } = useContext(AuthContext)
+  const { authenticated, userAuthenticated } = useContext(AuthContext)
+  //let token = 
+  useEffect(() =>{
+    userAuthenticated() 
+  })
   return authenticated ? (
     children
   ) : (

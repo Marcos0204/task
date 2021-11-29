@@ -15,6 +15,7 @@ const NewAcount = () => {
     if(message){
       showAlert(message.msg, message.category)
     }
+  // eslint-disable-next-line
   }, [message, authenticated])
   const [ user, setUser ] = useState({
     name:'',

@@ -6,18 +6,18 @@ import AuthContext from '../../context/authentication/AuthContext';
 
 const Login = () => {
   const { alert, showAlert} = useContext(AlertContext);
-  const { message, authenticated, logIn, userAuthenticated } = useContext(AuthContext)
+  const { message, authenticated, logIn } = useContext(AuthContext)
   const navigate = useNavigate()
   ////el caso de que el usuario se haya autenticado o resgistrado
   useEffect(() =>{
-    userAuthenticated()
+    //userAuthenticated()
     if(authenticated){
       navigate('/proyectos')
     }
     if(message){
       showAlert(message.msg, message.category)
     }
-    
+    // eslint-disable-next-line
   }, [message, authenticated])
 
   const [ user, setUser ] = useState({
